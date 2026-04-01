@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Selecione um perfil para começar a assistir na Netflix">
+    <title>Devflix - Selecione seu perfil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SPLASH SCREEN / ABERTURA -->
+    <div id="splash">
+    <div class="logo-wrapper">
+        <img src="assets/logo.png" alt="DEVFLIX Logo" class="splash-logo">
+        <div class="light-sweep"></div>
+    </div>
+    </div>
+
+    <!-- Botão fixo no topo direito, fora do fluxo da página para não deslocar o conteúdo -->
+    <button id="theme-toggle" aria-label="Alternar tema">Modo Claro</button>
+
+    <main>
+        <header>
+            <h1>Quem está assistindo?</h1>
+        </header>
+
+        <section aria-label="Perfis disponíveis">
+            <nav class="profiles">
+                <ul>
+                    <li>
+                        <a href="catalogo/catalogo.html" class="profile" data-name="Dante" data-img="../assets/perfil-1.png">
+                            <figure>
+                                <img src="assets/perfil-1.png" alt="Homem de pele parda de cabelo curto sorrido">
+                                <figcaption>
+                                    <span class="profile-name">Dante</span>
+                                    <span class="profile-role">O Estrategista</span>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="catalogo/catalogo.html" class="profile" data-name="Julia" data-img="../assets/perfil-2.png">
+                            <figure>
+                                <img src="assets/perfil-2.png" alt="Mulher de pele branca de cabelo longo sorrindo">
+                                <figcaption>
+                                    <span class="profile-name">Júlia</span>
+                                    <span class="profile-role">A criativa</span>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="catalogo/catalogo.html" class="profile" data-name="Kevyn" data-img="../assets/perfil-3.png">
+                            <figure>
+                                <img src="assets/perfil-3.png" alt="Homem de pele branca de cabelo curto cacheado sorrindo">
+                                <figcaption>
+                                    <span class="profile-name">Kevyn</span>
+                                    <span class="profile-role">O Dev</span>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="catalogo/catalogo.html" class="profile" data-name="Thomaz" data-img="../assets/perfil-4.png">
+                            <figure>
+                                <img src="assets/perfil-4.png" alt="Rapaz de pele branca e cabelo cacheado">
+                                <figcaption>
+                                    <span class="profile-name">Thomaz</span>
+                                    <span class="profile-role">O cliente</span>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+    </main>
+
+    <script>
+        const btn = document.getElementById('theme-toggle');
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            btn.textContent = 'Modo Escuro';
+            btn.classList.add('light-active');
+        }
+
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            btn.textContent = isLight ? 'Modo Escuro' : 'Modo Claro';
+            btn.classList.toggle('light-active', isLight);
+        });
+    </script>
+    <script src="js/index.js"></script>
+</body>
+</html>

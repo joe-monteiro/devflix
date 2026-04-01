@@ -1,0 +1,421 @@
+/* Reset e variáveis */
+* {
+    /* Remove todas as margens padrão dos elementos HTML */ margin: 0;
+    /* Remove todos os preenchimentos padrão dos elementos HTML */ padding: 0;
+    /* Faz com que padding e border sejam incluídos na largura e altura total do elemento */ box-sizing: border-box;
+}
+
+:root {
+    /* Define a cor preta usada no fundo da página no tema Netflix */ --netflix-black: #141414;
+    /* Define a cor cinza escuro usada nas figuras dos perfis no tema Netflix */ --netflix-dark-gray: #2c2c2c;
+    /* Define a cor vermelha usada nos elementos de destaque, como hover e foco, no tema Netflix */ --netflix-red: #e50914;
+    /* Define a cor branca usada no texto e bordas no tema Netflix */ --netflix-white: #ffffff;
+    /* Define a cor cinza usada no tema Netflix */ --netflix-gray: #808080;
+    /* Define a cor cinza claro usada no tema Netflix */ --netflix-light-gray: #b3b3b3;
+    /* Define a cor da sombra com transparência usada no tema Netflix */ --shadow-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Define as cores do tema claro aplicadas quando a classe .light-mode está no body */
+body.light-mode {
+    /* Substitui o fundo preto pelo branco no tema claro */ --netflix-black: #f4f4f4;
+    /* Substitui o cinza escuro por cinza claro nas figuras no tema claro */ --netflix-dark-gray: #e0e0e0;
+    /* Substitui o branco pelo preto no texto e bordas no tema claro */ --netflix-white: #141414;
+    /* Mantém o vermelho igual nos dois temas */ --netflix-red: #e50914;
+}
+
+/* Corpo da página */
+body {
+    /* Define a família de fontes para o corpo da página, priorizando Helvetica Neue */ font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /* Define a cor de fundo do corpo da página como preto */ background-color: var(--netflix-black);
+    /* Define a cor do texto no corpo da página como branco */ color: var(--netflix-white);
+    /* Define a altura mínima do corpo da página como 100% da altura da viewport */ min-height: 100vh;
+    /* Usa flexbox para o layout do corpo da página */ display: flex;
+    /* Centraliza os itens verticalmente no corpo da página */ align-items: center;
+    /* Centraliza os itens horizontalmente no corpo da página */ justify-content: center;
+    /* Adiciona preenchimento de 20px em todos os lados do corpo da página */ padding: 20px;
+    /* Adiciona transição suave ao trocar entre os temas claro e escuro */ transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Botão de alternância de tema — fixo no topo direito da página */
+#theme-toggle {
+    /* Fixa o botão na tela independentemente da rolagem da página */ position: fixed;
+    /* Posiciona o botão a 24px do topo da viewport */ top: 24px;
+    /* Posiciona o botão a 24px da direita da viewport */ right: 24px;
+    /* Remove a borda padrão do botão */ border: none;
+    /* Define o raio da borda para deixar o botão com cantos arredondados */ border-radius: 50px;
+    /* Define o preenchimento interno do botão */ padding: 10px 22px;
+    /* Define o tamanho da fonte do botão */ font-size: 0.9rem;
+    /* Define o peso da fonte do botão como semi-negrito */ font-weight: 600;
+    /* Define a cor do texto do botão como branco */ color: #ffffff;
+    /* Aplica o degradê escuro padrão do modo escuro — vermelho escuro para vermelho vivo */ background: linear-gradient(135deg, #7b0d0d, #e50914);
+    /* Muda o cursor para mão ao passar sobre o botão */ cursor: pointer;
+    /* Garante que o botão fique acima de todos os outros elementos da página */ z-index: 1000;
+    /* Adiciona sombra ao botão para destacá-lo do fundo */ box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+    /* Adiciona transição suave para todas as propriedades visuais do botão */ transition: all 0.3s ease;
+    /* Remove o contorno padrão do botão */ outline: none;
+    /* Define o espaçamento entre as letras do botão */ letter-spacing: 0.03em;
+}
+
+/* Estado do botão quando o tema claro está ativo — degradê mais suave e claro */
+#theme-toggle.light-active {
+    /* Aplica degradê claro ao botão no modo claro — cinza médio para vermelho suave */ background: linear-gradient(135deg, #831010, #c0392b);
+    /* Ajusta a sombra do botão para combinar com o degradê do tema claro */ box-shadow: 0 4px 15px rgba(192, 57, 43, 0.35);
+    /* Mantém o texto branco no botão do tema claro */ color: #ffffff;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+#theme-toggle:hover {
+    /* Aumenta ligeiramente o botão no hover para dar feedback visual */ transform: scale(1.05);
+    /* Intensifica a sombra do botão no hover */ box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
+}
+
+/* Efeito ao clicar no botão */
+#theme-toggle:active {
+    /* Reduz levemente o botão ao clicar para simular o pressionamento */ transform: scale(0.97);
+}
+
+/* Container principal */
+main {
+    /* Define a largura máxima do container principal */ max-width: 1200px;
+    /* Faz o container principal ocupar 100% da largura disponível até o máximo */ width: 100%;
+    /* Centraliza o texto dentro do container principal */ text-align: center;
+}
+
+/* Cabeçalho */
+header {
+    /* Adiciona margem inferior de 3rem ao cabeçalho */ margin-bottom: 3rem;
+}
+
+h1 {
+    /* Define o tamanho da fonte do título h1 */ font-size: 3.5rem;
+    /* Define o peso da fonte do título h1 como normal */ font-weight: 400;
+    /* Adiciona margem inferior de 0.5rem ao título h1 */ margin-bottom: 0.5rem;
+    /* Define o espaçamento entre letras do título h1 */ letter-spacing: -0.02em;
+}
+
+/* Navegação de perfis — apenas centraliza o bloco no eixo horizontal */
+.profiles {
+    /* Usa flexbox para centralizar a lista de perfis na página */ display: flex;
+    /* Centraliza a lista de perfis horizontalmente no container */ justify-content: center;
+}
+
+/* Lista de perfis — layout padrão em linha horizontal (desktop e tablets) */
+.profiles ul {
+    /* Remove o estilo de marcadores da lista de perfis */ list-style: none;
+    /* Remove o preenchimento padrão da lista de perfis */ padding: 0;
+    /* Remove a margem padrão da lista de perfis */ margin: 0;
+    /* Organiza os perfis lado a lado em linha horizontal */ display: flex;
+    /* Define a direção do layout dos perfis como horizontal */ flex-direction: row;
+    /* Impede que os perfis quebrem para a próxima linha em telas maiores */ flex-wrap: nowrap;
+    /* Centraliza os perfis horizontalmente dentro da lista */ justify-content: center;
+    /* Define o espaço entre cada perfil na lista */ gap: 2rem;
+}
+
+/* Itens individuais da lista de perfis */
+.profiles ul li {
+    /* Remove o estilo de marcadores dos itens individuais da lista de perfis */ list-style: none;
+}
+
+/* Links dos perfis */
+.profile {
+    /* Remove o sublinhado dos links dos perfis */ text-decoration: none;
+    /* Herda a cor do texto do elemento pai para os links dos perfis */ color: inherit;
+    /* Adiciona transição suave para transformações nos links dos perfis */ transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+    /* Define o raio da borda para cantos arredondados nos links dos perfis */ border-radius: 8px;
+    /* Esconde qualquer conteúdo que exceda os limites dos links dos perfis */ overflow: visible;
+    /* Define o posicionamento relativo para elementos filhos dos links dos perfis */ position: relative;
+    display: inline-block;
+}
+
+.profile:hover {
+    /* Aumenta ligeiramente o tamanho dos links dos perfis no hover */ transform: scale(1.05);
+}
+
+.profile:focus {
+        /* Define o deslocamento do contorno nos links dos perfis no foco */ outline-offset: 4px;
+}
+
+/* Figuras dos perfis */
+figure {
+    /* Remove margens padrão das figuras dos perfis */ margin: 0;
+    /* Define a cor de fundo das figuras dos perfis como cinza escuro */ background-color: transparente;
+    /* Define o raio da borda das figuras dos perfis */ border-radius: 8px;
+    /* Adiciona preenchimento interno às figuras dos perfis */ padding: 0.5rem 0.5rem 1rem;
+    /* Adiciona transição suave para mudança de cor de fundo das figuras */ transition: background-color 0.3s ease;
+    /* Define a largura mínima das figuras dos perfis */ min-width: 150px;
+}
+
+
+
+/* Imagens dos perfis */
+img {
+    /* Define a largura das imagens dos perfis */ width: 120px;
+    /* Define a altura das imagens dos perfis */ height: 120px;
+    /* Define o raio da borda das imagens dos perfis */ border-radius: 8px;
+    /* Faz as imagens dos perfis cobrirem o espaço sem distorcer */ object-fit: cover;
+    /* Remove o espaço extra abaixo das imagens dos perfis */ display: block;
+    /* Centraliza horizontalmente e adiciona margem inferior às imagens */ margin: 0 auto 1rem;
+    /* Adiciona borda transparente às imagens dos perfis */ border: 3px solid transparent;
+    /* Adiciona transição suave para mudança de cor da borda das imagens */ transition: border-color 0.3s ease;
+}
+
+.profile:hover img {
+    /* Muda a cor da borda das imagens dos perfis para branco no hover */ border-color: var(--netflix-red)
+}
+
+/* Legendas dos perfis */
+figcaption {
+    /* Define o tamanho da fonte das legendas dos perfis */ font-size: 1.2rem;
+    /* Define o peso da fonte das legendas como normal */ font-weight: 400;
+    /* Define a cor do texto das legendas como branco */ color: var(--netflix-white);
+    /* Adiciona transição suave para mudança de cor das legendas */ transition: color 0.3s ease;
+}
+
+.profile:hover figcaption {
+    /* Muda a cor do nome para vermelho ao passar o mouse */ color: var(--netflix-white);
+}
+
+figcaption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile-name {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.profile-role {
+    font-size: 0.75rem;
+    color: var(--netflix-gray);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Responsividade — telas médias (tablets) */
+@media (max-width: 768px) {
+    h1 {
+        /* Reduz o tamanho da fonte do título h1 em telas menores que 768px */ font-size: 2.5rem;
+    }
+
+    .profiles ul {
+        /* Reduz o espaço entre os perfis em telas menores que 768px */ gap: 1.5rem;
+    }
+
+    figure {
+        /* Reduz o preenchimento das figuras em telas menores que 768px */ padding: 1rem;
+        /* Reduz a largura mínima das figuras em telas menores que 768px */ min-width: 120px;
+    }
+
+    img {
+        /* Reduz a largura das imagens em telas menores que 768px */ width: 100px;
+        /* Reduz a altura das imagens em telas menores que 768px */ height: 100px;
+    }
+
+    figcaption {
+        /* Reduz o tamanho da fonte das legendas em telas menores que 768px */ font-size: 1rem;
+    }
+}
+
+/* SPLASH BASE */
+#splash {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* WRAPPER */
+.logo-wrapper {
+    position: relative;
+}
+
+/* LOGO */
+.splash-logo {
+    width: 380px;
+    opacity: 0;
+    transform: scale(0.7);
+    animation: logoCinematic 2s ease forwards;
+    filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.4));
+}
+
+/* LUZ PASSANDO */
+.light-sweep {
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255,255,255,0.6),
+        transparent 70%
+    );
+    animation: sweep 1.2s ease forwards;
+    animation-delay: 1.2s;
+}
+
+/* GLITCH */
+.splash-logo.glitch {
+    animation: glitch 0.3s infinite;
+}
+
+/* ANIMAÇÕES */
+@keyframes logoCinematic {
+    0% {
+        opacity: 0;
+        transform: scale(0.6);
+        filter: blur(12px);
+    }
+    40% {
+        opacity: 1;
+        transform: scale(1.1);
+        filter: blur(0);
+    }
+    70% {
+        transform: scale(0.98);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes sweep {
+    to {
+        left: 150%;
+    }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
+/* SAÍDA */
+.fade-out {
+    animation: fadeOut 0.8s ease forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Fundo com leve textura dinâmica */
+#splash::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(229,9,20,0.08) 0%, transparent 60%);
+    opacity: 0.6;
+    animation: pulseBg 2s ease-in-out infinite;
+}
+
+@keyframes pulseBg {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+}
+
+/* Responsividade — smartphones (telas menores que 480px): grade 2x2 */
+@media (max-width: 480px) {
+    body {
+        /* Reduz o preenchimento do corpo da página em telas menores que 480px */ padding: 10px;
+    }
+
+    h1 {
+        /* Reduz ainda mais o tamanho da fonte do título h1 em telas menores que 480px */ font-size: 2rem;
+    }
+
+    .profiles ul {
+        /* Muda o layout dos perfis para grade de duas colunas em telas menores que 480px */ display: grid;
+        /* Define duas colunas iguais para organizar os perfis em grade 2x2 */ grid-template-columns: 1fr 1fr;
+        /* Define o espaço horizontal entre as colunas da grade de perfis */ column-gap: 1rem;
+        /* Define espaço vertical maior entre as linhas da grade para separar os blocos */ row-gap: 2.5rem;
+    }
+
+    figure {
+        /* Reduz o preenchimento das figuras em telas menores que 480px */ padding: 1rem;
+        /* Remove a largura mínima das figuras para se adaptar à grade em telas pequenas */ min-width: unset;
+    }
+
+    img {
+        /* Reduz a largura das imagens em telas menores que 480px */ width: 80px;
+        /* Reduz a altura das imagens em telas menores que 480px */ height: 80px;
+    }
+
+    /* Reposiciona o botão de tema em telas pequenas para não sobrepor o conteúdo */
+    #theme-toggle {
+        /* Reduz o preenchimento do botão em telas menores que 480px */ padding: 8px 16px;
+        /* Reduz o tamanho da fonte do botão em telas menores que 480px */ font-size: 0.8rem;
+        /* Ajusta a distância do topo em telas menores que 480px */ top: 16px;
+        /* Ajusta a distância da direita em telas menores que 480px */ right: 16px;
+    }
+}
+
+/* Responsividade — smartphones compactos (telas menores que 360px) */
+@media (max-width: 360px) {
+    h1 {
+        /* Reduz o tamanho da fonte do título h1 em telas menores que 360px */ font-size: 1.6rem;
+    }
+
+    .profiles ul {
+        /* Reduz o espaço horizontal entre os perfis em telas menores que 360px */ column-gap: 0.8rem;
+        /* Mantém o espaço vertical maior entre as linhas da grade em telas muito pequenas */ row-gap: 2rem;
+    }
+
+    figure {
+        /* Reduz o preenchimento das figuras em telas menores que 360px */ padding: 0.8rem;
+    }
+
+    img {
+        /* Reduz a largura das imagens em telas menores que 360px */ width: 70px;
+        /* Reduz a altura das imagens em telas menores que 360px */ height: 70px;
+    }
+
+    figcaption {
+        /* Reduz o tamanho da fonte das legendas em telas menores que 360px */ font-size: 0.95rem;
+    }
+}
+
+/* Responsividade — desktop amplo e TV (telas maiores que 1200px) */
+@media (min-width: 1200px) {
+    body {
+        /* Aumenta o preenchimento do corpo da página em telas maiores que 1200px */ padding: 40px;
+    }
+
+    h1 {
+        /* Aumenta o tamanho da fonte do título h1 em telas maiores que 1200px */ font-size: 4rem;
+    }
+
+    .profiles ul {
+        /* Aumenta o espaço entre os perfis em telas maiores que 1200px */ gap: 0.5rem;
+    }
+
+    figure {
+        /* Aumenta o preenchimento das figuras em telas maiores que 1200px */ padding: 0.5rem;
+        /* Aumenta a largura mínima das figuras em telas maiores que 1200px */ min-width: 180px;
+    }
+
+    img {
+        /* Aumenta a largura das imagens em telas maiores que 1200px */ width: 140px;
+        /* Aumenta a altura das imagens em telas maiores que 1200px */ height: 140px;
+    }
+
+    figcaption {
+        /* Aumenta o tamanho da fonte das legendas em telas maiores que 1200px */ font-size: 1rem;
+    }
+}
